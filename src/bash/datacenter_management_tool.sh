@@ -35,6 +35,15 @@ do
 		echo "Archivo más grande:"
 		echo "Tamaño (bytes) | Ruta del archivo más grande"
 		find $path -type f -exec du -ab {} + | sort -n -r | head -n 1
+
+	elif [[ $selection == "4" ]]
+	then
+		echo "Memoria libre y espacio swap en uso:"
+		free -b | awk '
+			NR==2{free_mem=$4; total_mem=$2}
+			NR==3{swap_used=$3; total_swap=$2}
+			END {free_mem_per=(free_mem/total_mem)*100; swap_used_per=(swap_used/total_swap)*100; printf "Memoria libre: %d bytes (%.2f%%)\nEspacio de swap: %d (%.2f%%)\n", free_mem, free_mem_per, swap_used, swap_used_per}
+		'
 	fi
 
 	echo ""
