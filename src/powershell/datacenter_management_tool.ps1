@@ -47,6 +47,11 @@ function exec-option {
         }
 
         5 {
+            Write-Host "Conexiones de red activas:"
+            Get-NetTCPConnection -State Established
+
+            Write-Host ""
+            
             Write-Host "Número de conexiones de red activas actualmente (en estado ESTABLISHED):"
             (Get-NetTCPConnection -State Established).Count
         }
