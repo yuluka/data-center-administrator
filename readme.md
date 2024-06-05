@@ -94,3 +94,76 @@ To solve this problem, the cmdlet we used was:
 When the script is executed on our PC, the response we get is:
 
 ![PowerShell Point 5](docs/point5_powershell.png)
+
+---
+
+## Bash
+
+A Bash script has been developed that essentially does the same as the PowerShell script, with slight differences in style.
+
+### Point 1
+
+To solve this problem, the we used the following command:
+
+```bash
+ps aux --sort=-%cpu | head -n 6
+```
+
+When the script is executed on our PC, the response we get is:
+
+![Bash Point 1]()
+
+### Point 2
+
+To solve this problem, the we used the following command:
+
+```bash
+df -B 1 -a -t ext4 -t ext3 -t xfs --output=source,size,avail
+```
+
+When the script is executed on our PC, the response we get is:
+
+![Bash Point 2]()
+
+### Point 3
+
+To solve this problem, the we used the following command:
+
+```bash
+read path
+
+echo "Tamaño (bytes) | Ruta del archivo más grande"
+find $path -type f -exec du -ab {} + | sort -n -r | head -n 1
+```
+
+When the script is executed on our PC, the response we get is:
+
+![Bash Point 3]()
+
+### Point 4
+
+To solve this problem, the we used the following command:
+
+```bash
+free -b | awk '
+   NR==2{free_mem=$4; total_mem=$2}
+   NR==3{swap_used=$3; total_swap=$2}
+   END {free_mem_per=(free_mem/total_mem)*100; swap_used_per=(swap_used/total_swap)*100; printf "Memoria libre: %d bytes (%.2f%%)\nEspacio de swap: %d (%.2f%%)\n", free_mem, free_mem_per, swap_used, swap_used_per}
+'
+```
+
+When the script is executed on our PC, the response we get is:
+
+![Bash Point 4]()
+
+### Point 5
+
+To solve this problem, the we used the following command:
+
+```bash
+ss -tna | grep ESTAB | wc -l
+```
+
+When the script is executed on our PC, the response we get is:
+
+![Bash Point 5]()
