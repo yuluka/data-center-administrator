@@ -44,6 +44,17 @@ do
 			NR==3{swap_used=$3; total_swap=$2}
 			END {free_mem_per=(free_mem/total_mem)*100; swap_used_per=(swap_used/total_swap)*100; printf "Memoria libre: %d bytes (%.2f%%)\nEspacio de swap: %d (%.2f%%)\n", free_mem, free_mem_per, swap_used, swap_used_per}
 		'
+
+	elif [[ $selection == "5" ]]
+	then
+	echo "Conexiones de red activas:"
+	ss -tna | grep ESTAB
+
+	echo ""
+
+	echo "Número de conexiones de red activas actualmente (en estado ESTABLISHED):"
+	ss -tna | grep ESTAB | wc -l
+
 	fi
 
 	echo ""
