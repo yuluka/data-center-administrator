@@ -25,6 +25,16 @@ do
 	then
 		echo "Filesystems/Discos conectados:"
 		df -B 1 -a -t ext4 -t ext3 -t xfs --output=source,size,avail
+
+	elif [[ $selection == "3" ]]
+	then
+		echo "Especifique una ruta (/home, por ejemplo):"
+		read path
+
+		echo ""
+		echo "Archivo más grande:"
+		echo "Tamaño (bytes) | Ruta del archivo más grande"
+		find $path -type f -exec du -ab {} + | sort -n -r | head -n 1
 	fi
 
 	echo ""
