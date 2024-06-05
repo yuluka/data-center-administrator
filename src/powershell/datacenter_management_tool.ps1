@@ -32,13 +32,23 @@ function exec-option {
 
         2 {
             Write-Host "Filesystems/Discos conectados:"
-            Get-PSDrive -PSProvider FileSystem | select Name, @{Name="Size (B)"; Expression={$_.Used + $_.Free}}, @{Name="FreeSpace (B)"; Expression={$_.Free}} | ft
+            Get-PSDrive -PSProvider FileSystem | select Name, @{Name="Size (B)"; Expression={($_.Used + $_.Free)*1KB}}, @{Name="FreeSpace (B)"; Expression={($_.Free)*1KB}} | ft
         }
 
         3 {
             $drive = Read-Host "Especifique un disco (C:, por ejemplo)"
             Write-Host "Archivo más grande:"
             dir -Path $drive -Recurse | sort Length -Descending | select Name, Length, Directory -First 1 | ft
+        }
+
+        4 {
+            Write-Host "Memoria libre y espacio swap en uso:"
+            Get-WmiObject -Class Win32_OperatingSystem | select @{Name="Free Memory (B)"; Expression={$_.FreePhysicalMemory * 1KB}}, @{Name="Free Memory (%)"; Expression={(($_.FreePhysicalMemory * 1KB) / ($_.TotalVisibleMemorySize * 1KB)) * 100}}, @{Name="Swap in Use (B)"; Expression={($_.TotalVirtualMemorySize - $_.FreeVirtualMemory) * 1KB}}, @{Name="Swap in Use (%)"; Expression={(($_.TotalVirtualMemorySize - $_.FreeVirtualMemory) * 1KB) / ($_.TotalVirtualMemorySize * 1KB) * 100}} | ft
+        }
+
+        5 {
+            Write-Host "Número de conexiones de red activas actualmente (en estado ESTABLISHED):"
+            (Get-NetTCPConnection -State Established).Count
         }
 
         default {
