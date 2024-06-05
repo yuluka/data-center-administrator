@@ -35,6 +35,12 @@ function exec-option {
             Get-PSDrive -PSProvider FileSystem | select Name, @{Name="Size (B)"; Expression={$_.Used + $_.Free}}, @{Name="FreeSpace (B)"; Expression={$_.Free}} | ft
         }
 
+        3 {
+            $drive = Read-Host "Especifique un disco (C:, por ejemplo)"
+            Write-Host "Archivo más grande:"
+            dir -Path $drive -Recurse | sort Length -Descending | select Name, Length, Directory -First 1 | ft
+        }
+
         default {
             Write-Host "Opción inválida."
         }
