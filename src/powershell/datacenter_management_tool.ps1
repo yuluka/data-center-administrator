@@ -22,26 +22,31 @@
     consultar el archivo más grande. 
 
     .EXAMPLE
-    .\datacenter_management_tool.ps1 -option 1
+    .\datacenter_management_tool.ps1 
+    1
     Este comando consultará y mostrará los 5 procesos que consumen más CPU en ese momento.
 
     .EXAMPLE
-    .\datacenter_management_tool.ps1 -option 2
+    .\datacenter_management_tool.ps1 
+    2
     Este comando consultará y mostrará los filesystems o discos conectados a la máquina.
 
     .EXAMPLE
-    .\datacenter_management_tool.ps1 -option 3 
+    .\datacenter_management_tool.ps1 
+    3 
     C:
     Este comando consultará y mostrará el nombre y el tamaño del archivo más grande 
     almacenado en el disco C:.
 
     .EXAMPLE
-    .\datacenter_management_tool.ps1 -option 4
+    .\datacenter_management_tool.ps1 
+    4
     Este comando consultará y mostrará la cantidad de memoria libre y la cantidad del 
     espacio de swap en uso.
 
     .EXAMPLE
-    .\datacenter_management_tool.ps1 -option 5
+    .\datacenter_management_tool.ps1 
+    5
     Este comando consultará y mostrará el número de conexiones de red activas 
     actualmente (en estado ESTABLISHED).
 #>
