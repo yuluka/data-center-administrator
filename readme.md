@@ -118,7 +118,7 @@ ps aux --sort=-%cpu | head -n 6
 
 When the script is executed on our PC, the response we get is:
 
-![Bash Point 1]()
+![Bash Point 1](docs/point1_bash.jpg)
 
 ### Point 2
 
@@ -130,7 +130,7 @@ df -B 1 -a -t ext4 -t ext3 -t xfs --output=source,size,avail
 
 When the script is executed on our PC, the response we get is:
 
-![Bash Point 2]()
+![Bash Point 2](docs/point2_bash.jpg)
 
 ### Point 3
 
@@ -145,7 +145,7 @@ find $path -type f -exec du -ab {} + | sort -n -r | head -n 1
 
 When the script is executed on our PC, the response we get is:
 
-![Bash Point 3]()
+![Bash Point 3](docs/point3_bash.jpg)
 
 ### Point 4
 
@@ -161,7 +161,7 @@ free -b | awk '
 
 When the script is executed on our PC, the response we get is:
 
-![Bash Point 4]()
+![Bash Point 4](docs/point4_bash.jpg)
 
 ### Point 5
 
@@ -173,4 +173,4 @@ ss -tna | grep ESTAB | wc -l
 
 When the script is executed on our PC, the response we get is:
 
-![Bash Point 5]()
+![Bash Point 5](docs/point5_bash.jpg)
