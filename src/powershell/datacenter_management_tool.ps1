@@ -1,14 +1,54 @@
+<#
+    .SYNOPSIS
+    datacenter_management_tool.ps1 es un script de powershell 
+    que permite hacer la automatizaciÃ³n de los labores de un 
+    administrador de un datacenter.
+    
+    .DESCRIPTION
+    Con la implementaciÃ³n de este script, se busca que el usuario pueda:
+    1) Consultar los 5 procesos que consumen mÃ¡s CPU en ese momento.
+    2) Consutar los filesystems o discos conectados a la mÃ¡quina.
+    3) Consultar el nombre y el tamaÃ±o del archivo mÃ¡s grande almacenado
+    en un disco o filesystem especificado.
+    4) Consultar la cantidad de memoria libre y la cantidad del espacio de swap en uso.
+    5) Consultar el nÃºmero de conexiones de red activas actualmente (en estado ESTABLISHED).
+
+    .PARAMETER option.
+    Este parÃ¡metro indica la opciÃ³n o acciÃ³n que el usuario quiere realizar. Este parÃ¡metro es obligatorio
+    y de tipo entero. Los valores validos son del 1 al 5. El 0 representa la finalizaciÃ³n de la ejecuciÃ³n 
+    del script.
+
+    Cabe destacar que en la opciÃ³n 3, el usuario debe especificar el disco o filesystem en el que desea 
+    consultar el archivo mÃ¡s grande. 
+
+    .EXAMPLE
+    .\datacenter_management_tool.ps1 -option 1
+    Este comando consultarÃ¡ y mostrarÃ¡ los 5 procesos que consumen mÃ¡s CPU en ese momento.
+
+    .EXAMPLE
+    .\datacenter_management_tool.ps1 -option 2
+    Este comando consultarÃ¡ y mostrarÃ¡ los filesystems o discos conectados a la mÃ¡quina.
+
+    .EXAMPLE
+    .\datacenter_management_tool.ps1 -option 3 
+    C:
+    Este comando consultarÃ¡ y mostrarÃ¡ el nombre y el tamaÃ±o del archivo mÃ¡s grande almacenado en el disco C:.
+
+    .EXAMPLE
+
+#>
+
 function show-menu {
     cls
     Write-Host "======================================"
-    Write-Host "            Menú principal            "
+    Write-Host "            Menï¿½ principal            "
     Write-Host "======================================"
-    Write-Host "(Digite el número correspondiente a la opción que desea)"
-    Write-Host "1) Desplegar los cinco procesos que más CPU estén consumiendo en ese momento"
-    Write-Host "2) Desplegar los filesystems o discos conectados a la máquina"
-    Write-Host "3) Desplegar el nombre y el tamaño del archivo más grande almacenado en un disco o filesystem especificado"
+    Write-Host "(Digite el nï¿½mero correspondiente a la opciï¿½n que desea)"
+    Write-Host "1) Desplegar los cinco procesos que mï¿½s CPU estï¿½n consumiendo en ese momento"
+    Write-Host "2) Desplegar los filesystems o discos conectados a la mï¿½quina"
+    Write-Host "3) Desplegar el nombre y el tamaï¿½o del archivo mï¿½s grande almacenado en un disco o filesystem especificado"
     Write-Host "4) Desplegar cantidad de memoria libre y cantidad del espacio de swap en uso"
-    Write-Host "5) Desplegar número de conexiones de red activas actualmente (en estado ESTABLISHED)"
+    Write-Host "5) Desplegar nï¿½mero de conexiones de red activas actualmente (en estado ESTABLISHED)"
     Write-Host "0) Salir"
 }
 
@@ -26,7 +66,7 @@ function exec-option {
         }
 
         1 {
-            Write-Host "Top 5 procesos que más están consumiendo, en este momento, son:"
+            Write-Host "Top 5 procesos que mï¿½s estï¿½n consumiendo, en este momento, son:"
             Get-Process | sort cpu -Descending | select -First 5
         }
 
@@ -37,7 +77,7 @@ function exec-option {
 
         3 {
             $drive = Read-Host "Especifique un disco (C:, por ejemplo)"
-            Write-Host "Archivo más grande:"
+            Write-Host "Archivo mï¿½s grande:"
             dir -Path $drive -Recurse | sort Length -Descending | select Name, Length, Directory -First 1 | ft
         }
 
@@ -52,12 +92,12 @@ function exec-option {
 
             Write-Host ""
             
-            Write-Host "Número de conexiones de red activas actualmente (en estado ESTABLISHED):"
+            Write-Host "Nï¿½mero de conexiones de red activas actualmente (en estado ESTABLISHED):"
             (Get-NetTCPConnection -State Established).Count
         }
 
         default {
-            Write-Host "Opción inválida."
+            Write-Host "Opciï¿½n invï¿½lida."
         }
     }
 
