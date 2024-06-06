@@ -35,7 +35,10 @@
     Este comando consultará y mostrará el nombre y el tamaño del archivo más grande almacenado en el disco C:.
 
     .EXAMPLE
+    .\datacenter_management_tool.ps1 -option 4
+    Este comando consultará y mostrará la cantidad de memoria libre y la cantidad del espacio de swap en uso.
 
+    
 #>
 
 function show-menu {
