@@ -32,13 +32,18 @@
     .EXAMPLE
     .\datacenter_management_tool.ps1 -option 3 
     C:
-    Este comando consultará y mostrará el nombre y el tamaño del archivo más grande almacenado en el disco C:.
+    Este comando consultará y mostrará el nombre y el tamaño del archivo más grande 
+    almacenado en el disco C:.
 
     .EXAMPLE
     .\datacenter_management_tool.ps1 -option 4
-    Este comando consultará y mostrará la cantidad de memoria libre y la cantidad del espacio de swap en uso.
+    Este comando consultará y mostrará la cantidad de memoria libre y la cantidad del 
+    espacio de swap en uso.
 
-    
+    .EXAMPLE
+    .\datacenter_management_tool.ps1 -option 5
+    Este comando consultará y mostrará el número de conexiones de red activas 
+    actualmente (en estado ESTABLISHED).
 #>
 
 function show-menu {
