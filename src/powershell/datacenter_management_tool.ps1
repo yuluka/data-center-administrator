@@ -1,54 +1,54 @@
 <#
  .SYNOPSIS
-    datacenter_management_tool.ps1 es un script de powershell 
-    que permite hacer la automatización de los labores de un 
-    administrador de un datacenter.
+datacenter_management_tool.ps1 es un script de powershell 
+que permite hacer la automatización de los labores de un 
+administrador de un datacenter.
     
  .DESCRIPTION
-    Con la implementación de este script, se busca que el usuario pueda:
-    1) Consultar los 5 procesos que consumen más CPU en ese momento.
-    2) Consutar los filesystems o discos conectados a la máquina.
-    3) Consultar el nombre y el tamaño del archivo más grande almacenado
-    en un disco o filesystem especificado.
-    4) Consultar la cantidad de memoria libre y la cantidad del espacio de swap en uso.
-    5) Consultar el número de conexiones de red activas actualmente (en estado ESTABLISHED).
+Con la implementación de este script, se busca que el usuario pueda:
+1) Consultar los 5 procesos que consumen más CPU en ese momento.
+2) Consutar los filesystems o discos conectados a la máquina.
+3) Consultar el nombre y el tamaño del archivo más grande almacenado
+en un disco o filesystem especificado.
+4) Consultar la cantidad de memoria libre y la cantidad del espacio de swap en uso.
+5) Consultar el número de conexiones de red activas actualmente (en estado ESTABLISHED).
 
- .PARAMETER option.
-    Este parámetro indica la opción o acción que el usuario quiere realizar. Este parámetro es obligatorio
-    y de tipo entero. Los valores validos son del 1 al 5. El 0 representa la finalización de la ejecución 
-    del script.
+ .PARAMETER option
+Este parámetro indica la opción o acción que el usuario quiere realizar. Este parámetro es obligatorio
+y de tipo entero. Los valores validos son del 1 al 5. El 0 representa la finalización de la ejecución 
+del script.
 
-    Cabe destacar que en la opción 3, el usuario debe especificar el disco o filesystem en el que desea 
-    consultar el archivo más grande. 
-
- .EXAMPLE
-    .\datacenter_management_tool.ps1 
-    1
-    Este comando consultará y mostrará los 5 procesos que consumen más CPU en ese momento.
+Cabe destacar que en la opción 3, el usuario debe especificar el disco o filesystem en el que desea 
+consultar el archivo más grande. 
 
  .EXAMPLE
-    .\datacenter_management_tool.ps1 
-    2
-    Este comando consultará y mostrará los filesystems o discos conectados a la máquina.
+.\datacenter_management_tool.ps1 
+1
+Este comando consultará y mostrará los 5 procesos que consumen más CPU en ese momento.
 
  .EXAMPLE
-    .\datacenter_management_tool.ps1 
-    3 
-    C:
-    Este comando consultará y mostrará el nombre y el tamaño del archivo más grande 
-    almacenado en el disco C:.
+.\datacenter_management_tool.ps1 
+2
+Este comando consultará y mostrará los filesystems o discos conectados a la máquina.
 
  .EXAMPLE
-    .\datacenter_management_tool.ps1 
-    4
-    Este comando consultará y mostrará la cantidad de memoria libre y la cantidad del 
-    espacio de swap en uso.
+.\datacenter_management_tool.ps1 
+3 
+C:
+Este comando consultará y mostrará el nombre y el tamaño del archivo más grande 
+almacenado en el disco C:.
 
  .EXAMPLE
-    .\datacenter_management_tool.ps1 
-    5
-    Este comando consultará y mostrará el número de conexiones de red activas 
-    actualmente (en estado ESTABLISHED).
+.\datacenter_management_tool.ps1 
+4
+Este comando consultará y mostrará la cantidad de memoria libre y la cantidad del 
+espacio de swap en uso.
+
+ .EXAMPLE
+.\datacenter_management_tool.ps1 
+5
+Este comando consultará y mostrará el número de conexiones de red activas 
+actualmente (en estado ESTABLISHED).
 #>
 
 function show-menu {
